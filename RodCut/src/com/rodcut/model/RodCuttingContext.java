@@ -32,7 +32,7 @@ public class RodCuttingContext {
 		// Create Rods of size total length
 		int index = 0;
 		for (double price : priceList) {
-			Rod rod = new Rod(index++, index, price, (price / (double) index));
+			Rod rod = new Rod(index++, index, price);
 			rodList.add(rod);
 		}
 	}

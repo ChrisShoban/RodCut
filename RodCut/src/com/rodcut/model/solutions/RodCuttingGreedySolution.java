@@ -21,7 +21,7 @@ public class RodCuttingGreedySolution extends RodCuttingStrategy {
 		while (currentLength <= totalLength) {
 			Rod rod = rodList.get(index);
 			if (rod.getLength() <= currentLength) {
-				selectedRods.add(new Rod(rod.getIndex(), rod.getLength(), rod.getPrice(), rod.getPriceRatio()));
+				selectedRods.add(new Rod(rod.getIndex(), rod.getLength(), rod.getPrice()));
 				currentLength += rod.getLength();
 			}
 			else {
