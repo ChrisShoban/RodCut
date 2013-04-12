@@ -6,7 +6,7 @@ import java.util.List;
 import com.rodcut.model.Rod;
 import com.rodcut.model.RodCuttingStrategy;
 
-public class RodCuttingGreedySolution implements RodCuttingStrategy {
+public class RodCuttingGreedySolution extends RodCuttingStrategy {
 
 	public List<Rod> getMaximumRevenueRods(int totalLength, List<Rod> rodList) {
 
@@ -28,14 +28,5 @@ public class RodCuttingGreedySolution implements RodCuttingStrategy {
 			}
 		}
 		return selectedRods;
-	}
-
-	public double getMaximumRevenue(int totalLength, List<Rod> rodList) {
-		List<Rod> maximumRevenueRods = getMaximumRevenueRods(totalLength, rodList);
-		double sum = 0;
-		for (Rod rod : maximumRevenueRods) {
-			sum += rod.getPrice();
-		}
-		return sum;
 	}
 }
