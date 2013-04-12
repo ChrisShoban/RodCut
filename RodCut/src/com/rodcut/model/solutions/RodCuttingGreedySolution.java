@@ -1,4 +1,4 @@
-package com.rodcut.solutions;
+package com.rodcut.model.solutions;
 
 import java.util.ArrayList;
 import java.util.List;

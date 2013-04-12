@@ -1,11 +1,11 @@
-package com.rodcut.solutions;
+package com.rodcut.model.solutions;
 
 import java.util.List;
 
 import com.rodcut.model.Rod;
 import com.rodcut.model.RodCuttingStrategy;
 
-public class RodCuttingDivideAndConquerSolution implements RodCuttingStrategy{
+public class RodCuttingBranchAndBoundSolution implements RodCuttingStrategy{
 
 	@Override
 	public List<Rod> getMaximumRevenueRods(int totalLength, List<Rod> rodList) {
@@ -19,7 +19,5 @@ public class RodCuttingDivideAndConquerSolution implements RodCuttingStrategy{
 		return 0;
 	}
 
-	
-	
 	
 }

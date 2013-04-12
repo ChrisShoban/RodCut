@@ -3,10 +3,10 @@ package com.rodcut.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.rodcut.solutions.RodCuttingBranchAndBoundSolution;
-import com.rodcut.solutions.RodCuttingDivideAndConquerSolution;
-import com.rodcut.solutions.RodCuttingDynamicSolution;
-import com.rodcut.solutions.RodCuttingGreedySolution;
+import com.rodcut.model.solutions.RodCuttingBranchAndBoundSolution;
+import com.rodcut.model.solutions.RodCuttingDivideAndConquerSolution;
+import com.rodcut.model.solutions.RodCuttingDynamicSolution;
+import com.rodcut.model.solutions.RodCuttingGreedySolution;
 
 public class RodCuttingModel {
 	
