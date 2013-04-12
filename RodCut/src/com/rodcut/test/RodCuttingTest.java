@@ -2,35 +2,21 @@ package com.rodcut.test;
 
 import java.util.ArrayList;
 
-import com.rodcut.model.RodCuttingContext;
-import com.rodcut.solutions.RodCuttingBranchAndBoundSolution;
-import com.rodcut.solutions.RodCuttingDivideAndConquerSolution;
-import com.rodcut.solutions.RodCuttingDynamicSolution;
-import com.rodcut.solutions.RodCuttingGreedySolution;
+import com.rodcut.model.RodCuttingModel;
 
 public class RodCuttingTest {
 	
 	public static void main(String[] args) {
-		RodCuttingContext context;
-
 		int totalLength = 24;
 		ArrayList<Double> prices = new ArrayList<Double>();
-		
-		context = new RodCuttingContext(new RodCuttingGreedySolution());
-		double greedyResult = context.getMaximumRevenueStrategy(totalLength, prices);
-
-		context = new RodCuttingContext(new RodCuttingDynamicSolution());
-		double dynamicResult = context.getMaximumRevenueStrategy(totalLength, prices);
-
-		context = new RodCuttingContext(new RodCuttingBranchAndBoundSolution());
-		double branchAndBoundResult = context.getMaximumRevenueStrategy(totalLength, prices);
-		
-		context = new RodCuttingContext(new RodCuttingDivideAndConquerSolution());
-		double divideAndConquerResult = context.getMaximumRevenueStrategy(totalLength, prices);
-
-		System.out.println("Greedy Algorithm Maximum Revenue : " + greedyResult);
-		System.out.println("Dynamic Programming Algorithm Maximum Revenue : " + dynamicResult);
-		System.out.println("Branch And Bound Algorithm Maximum Revenue : " + branchAndBoundResult);
-		System.out.println("Divide And Conquer Algorithm Maximum Revenue : " + divideAndConquerResult);
+		prices.add(1.0);
+		prices.add(2.0);
+		prices.add(3.0);
+		prices.add(4.0);
+		RodCuttingModel model = new RodCuttingModel(totalLength, prices);
+		System.out.println("Greedy Algorithm Maximum Revenue : " + model.getGreedyAlgorithmMaximumRevenue());
+		// System.out.println("Dynamic Programming Algorithm Maximum Revenue : " + model.getDynamicAlgorithmMaximumRevenue());
+		// System.out.println("Branch And Bound Algorithm Maximum Revenue : " + model.getBranchAndBoundAlgorithmMaximumRevenue());
+		// System.out.println("Divide And Conquer Algorithm Maximum Revenue : " + model.getDivideAndConquerAlgorithmMaximumRevenue());
 	}
 }
