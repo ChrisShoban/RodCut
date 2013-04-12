@@ -1,16 +1,22 @@
 package com.rodcut.model;
 
-import java.util.List;
-
-public class Rod {
+public class Rod implements Comparable<Rod> {
+	
+	private int index;
 	
 	private int length;
 	
-	private List<Integer> cutLengths;
+	private double price;
 	
-	private List<Integer> prices;
-	
-	private double maximumRevenue;
+	private Double priceRatio;
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
 
 	public int getLength() {
 		return length;
@@ -20,27 +26,23 @@ public class Rod {
 		this.length = length;
 	}
 
-	public List<Integer> getCutLengths() {
-		return cutLengths;
+	public double getPrice() {
+		return price;
 	}
 
-	public void setCutLengths(List<Integer> cutLengths) {
-		this.cutLengths = cutLengths;
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
-	public List<Integer> getPrices() {
-		return prices;
+	public Double getPriceRatio() {
+		return priceRatio;
 	}
 
-	public void setPrices(List<Integer> prices) {
-		this.prices = prices;
+	public void setPriceRatio(Double priceRatio) {
+		this.priceRatio = priceRatio;
 	}
-
-	public double getMaximumRevenue() {
-		return maximumRevenue;
-	}
-
-	public void setMaximumRevenue(double maximumRevenue) {
-		this.maximumRevenue = maximumRevenue;
+	
+	public int compareTo(Rod object) {
+		return this.priceRatio.compareTo(object.priceRatio); 
 	}
 }

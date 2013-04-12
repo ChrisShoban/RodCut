@@ -2,7 +2,6 @@ package com.rodcut.test;
 
 import java.util.ArrayList;
 
-import com.rodcut.model.Rod;
 import com.rodcut.model.RodCuttingContext;
 import com.rodcut.solutions.RodCuttingBranchAndBoundSolution;
 import com.rodcut.solutions.RodCuttingDivideAndConquerSolution;
@@ -15,24 +14,23 @@ public class RodCuttingTest {
 		RodCuttingContext context;
 
 		int totalLength = 24;
-		ArrayList<Integer> prices = new ArrayList<Integer>();
+		ArrayList<Double> prices = new ArrayList<Double>();
 		
 		context = new RodCuttingContext(new RodCuttingGreedySolution());
-		Rod resultA = context.executeStrategy(totalLength, prices);
+		double greedyResult = context.getMaximumRevenueStrategy(totalLength, prices);
 
 		context = new RodCuttingContext(new RodCuttingDynamicSolution());
-		Rod resultB = context.executeStrategy(totalLength, prices);
+		double dynamicResult = context.getMaximumRevenueStrategy(totalLength, prices);
 
 		context = new RodCuttingContext(new RodCuttingBranchAndBoundSolution());
-		Rod resultC = context.executeStrategy(totalLength, prices);
+		double branchAndBoundResult = context.getMaximumRevenueStrategy(totalLength, prices);
 		
 		context = new RodCuttingContext(new RodCuttingDivideAndConquerSolution());
-		Rod resultD = context.executeStrategy(totalLength, prices);
+		double divideAndConquerResult = context.getMaximumRevenueStrategy(totalLength, prices);
 
-		System.out.println("Result A : " + resultA.getMaximumRevenue());
-		System.out.println("Result B : " + resultB.getMaximumRevenue());
-		System.out.println("Result C : " + resultC.getMaximumRevenue());
-		System.out.println("Result D : " + resultD.getMaximumRevenue());
-
+		System.out.println("Greedy Algorithm Maximum Revenue : " + greedyResult);
+		System.out.println("Dynamic Programming Algorithm Maximum Revenue : " + dynamicResult);
+		System.out.println("Branch And Bound Algorithm Maximum Revenue : " + branchAndBoundResult);
+		System.out.println("Divide And Conquer Algorithm Maximum Revenue : " + divideAndConquerResult);
 	}
 }

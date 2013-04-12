@@ -1,7 +1,10 @@
 package com.rodcut.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface RodCuttingStrategy {
-	Rod getMaximumRevenue(int totalLength, ArrayList<Integer> prices);
+		
+	 List<Rod> getMaximumRevenueRods(int totalLength, List<Rod> rodList) ;
+	 
+	 double getMaximumRevenue(int totalLength, List<Rod> rodList) ;
 }
