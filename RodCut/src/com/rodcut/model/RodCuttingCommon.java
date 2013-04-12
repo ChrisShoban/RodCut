@@ -1,9 +1,7 @@
-package com.rodcut.solutions;
+package com.rodcut.model;
 
 import java.util.Collections;
 import java.util.List;
-
-import com.rodcut.model.Rod;
 
 public class RodCuttingCommon {
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.rodcut.model.Rod;
+import com.rodcut.model.RodCuttingCommon;
 import com.rodcut.model.RodCuttingStrategy;
 
 public class RodCuttingGreedySolution implements RodCuttingStrategy {
