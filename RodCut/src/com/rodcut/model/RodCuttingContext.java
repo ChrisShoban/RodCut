@@ -19,7 +19,7 @@ public class RodCuttingContext {
 		createRods(totalLength, prices);
 		return this.strategy.getMaximumRevenue(totalLength, rodList);
 	}
-	
+
 	public List<Rod> getMaximumRevenueRodsStrategy(int totalLength, ArrayList<Double> prices) {
 		createRods(totalLength, prices);
 		return this.strategy.getMaximumRevenueRods(totalLength, rodList);
@@ -28,30 +28,25 @@ public class RodCuttingContext {
 	private void createRods(int totalLength, ArrayList<Double> prices) {
 		// Prices.length <= total length
 		setRodListLength(totalLength, prices);
-		
-		// Create Rods of size total length 
+
+		// Create Rods of size total length
 		int index = 0;
 		for (double price : priceList) {
-			Rod rod = new Rod();
-			rod.setIndex(index++);
-			rod.setLength(index);
-			rod.setPrice(price);
-			rod.setPriceRatio(price / (double) index);
+			Rod rod = new Rod(index++, index, price, (price / (double) index));
 			rodList.add(rod);
 		}
 	}
-	
+
 	private void setRodListLength(int totalLength, ArrayList<Double> prices) {
-		if(prices == null) {
+		if (prices == null) {
 			return;
 		}
 		if (totalLength < prices.size()) {
 			priceList = new ArrayList<Double>(prices.subList(0, totalLength));
-		} 
+		}
 		else {
 			priceList = prices;
 		}
 	}
 
-	
 }

@@ -20,14 +20,9 @@ public class RodCuttingGreedySolution implements RodCuttingStrategy {
 		while (currentLength <= totalLength) {
 			Rod rod = rodList.get(index);
 			if (rod.getLength() <= currentLength) {
-				Rod selectedRod = new Rod();
-				selectedRod.setIndex(rod.getIndex());
-				selectedRod.setLength(rod.getLength());
-				selectedRod.setPrice(rod.getPrice());
-				selectedRod.setPriceRatio(rod.getPriceRatio());
-				selectedRods.add(selectedRod);
+				selectedRods.add(new Rod(rod.getIndex(), rod.getLength(), rod.getPrice(), rod.getPriceRatio()));
 				currentLength += rod.getLength();
-			} 
+			}
 			else {
 				index++;
 			}
@@ -38,7 +33,7 @@ public class RodCuttingGreedySolution implements RodCuttingStrategy {
 	public double getMaximumRevenue(int totalLength, List<Rod> rodList) {
 		List<Rod> maximumRevenueRods = getMaximumRevenueRods(totalLength, rodList);
 		double sum = 0;
-		for(Rod rod : maximumRevenueRods) {
+		for (Rod rod : maximumRevenueRods) {
 			sum += rod.getPrice();
 		}
 		return sum;
