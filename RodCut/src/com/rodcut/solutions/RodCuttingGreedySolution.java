@@ -38,5 +38,4 @@ public class RodCuttingGreedySolution implements RodCuttingStrategy {
 		}
 		return sum;
 	}
-
 }
