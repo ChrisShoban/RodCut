@@ -2,7 +2,6 @@ package com.rodcut.model.solutions;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 import com.rodcut.model.Rod;
@@ -11,9 +10,9 @@ import com.rodcut.model.RodCuttingStrategy;
 public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 
 	private int totalLength = 0;
-	private int nodeCapacity = 0;
+	//private int nodeCapacity = 0;
 	private List<Rod> possibilities = new ArrayList<Rod>();
-	private List<String> discovered = new ArrayList<String>();
+	//private List<String> discovered = new ArrayList<String>();
 	
 	public List<Rod> getMaximumRevenueRods(int totalLength, List<Rod> rodList) {
 		createNodePossibilities(rodList);
@@ -37,7 +36,7 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 										  rodList.get(index).getLength(), 
 										  rodList.get(index).getPrice()));
 			}
-			nodeCapacity += totalLength/currLen;
+			// nodeCapacity += totalLength/currLen;
 		}
 	}
 	
@@ -70,8 +69,6 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 			List<Rod> rightPossibilities = new ArrayList<Rod>();
 			Collections.copy(leftPossibilities, possibilitiesRemaining);
 			Collections.copy(rightPossibilities, possibilitiesRemaining);
-			// create a new rodList adding the next item to it
-			// branch left
 			
 			// Branching left means to keep the item at the pointer
 			List<Rod> left = branch(pointer + 1, leftPossibilities);
@@ -95,7 +92,19 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 	public List<Rod> greaterRevenue(List<Rod> left, List<Rod> right) {
 		int sumLeft = 0;
 		int sumRight = 0;
-		return null;
+		for(Rod rod : left) {
+			sumLeft += rod.getPrice();
+		}
+		for(Rod rod : right) {
+			sumRight += rod.getPrice();
+		}
+		
+		if(sumLeft >= sumRight) {
+			return left;
+		}
+		else {
+			return right;
+		}
 	}
 	
 	/**
@@ -136,10 +145,10 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 	public static void main(String[] args) {
 		ArrayList<Rod> list = new ArrayList<Rod>();
 		for(int i = 1; i < 4; i++) {
-			list.add(new Rod(i, i, i));
+			list.add(new Rod(i, i, i + 1));
 		}
 		RodCuttingBranchAndBoundSolution test = new RodCuttingBranchAndBoundSolution();
-		test.createNodePossibilities(list);
+		test.getMaximumRevenueRods(list.size(), list);
 	}
 	
 	// TODO: Is this even needed?
