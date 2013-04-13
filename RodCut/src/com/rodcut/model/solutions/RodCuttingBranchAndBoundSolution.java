@@ -18,8 +18,10 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 	public List<Rod> getMaximumRevenueRods(int totalLength, List<Rod> rodList) {
 		createNodePossibilities(rodList);
 		this.totalLength = totalLength;
+		
+		List<Rod> result = branch(0, rodList);
 		// TODO Auto-generated method stub
-		return null;
+		return result;
 	}
 	
 	/**
@@ -39,6 +41,7 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 		}
 	}
 	
+	/*
 	public List<Rod> startBranchBound(List<Rod> rodList) {
 		int leftPointer = 0;
 		int rightPointer = 0;
@@ -53,32 +56,58 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 		List<Rod> right = branch(rightPointer, rightPossibilities);
 		return null;
 	}
+	*/
 	
+	/**
+	 * TODO check that pointer does not exceed length of possibilities remaining
+	 * @param pointer
+	 * @param possibilitiesRemaining
+	 * @return
+	 */
 	public List<Rod> branch(int pointer, List<Rod> possibilitiesRemaining) {
-		if(withinBounds(possibilitiesRemaining)) { //&& !(discovered.contains(createId(currentRodList, possibilitiesLeft)))) {
+		if(withinBounds(pointer, possibilitiesRemaining)) { //&& !(discovered.contains(createId(currentRodList, possibilitiesLeft)))) {
 			List<Rod> leftPossibilities = new ArrayList<Rod>();
 			List<Rod> rightPossibilities = new ArrayList<Rod>();
 			Collections.copy(leftPossibilities, possibilitiesRemaining);
 			Collections.copy(rightPossibilities, possibilitiesRemaining);
 			// create a new rodList adding the next item to it
 			// branch left
-			List<Rod> left = branch(pointer + 1, possibilitiesRemaining);
+			
+			// Branching left means to keep the item at the pointer
+			List<Rod> left = branch(pointer + 1, leftPossibilities);
 			// create a new rodList without adding the next item to it
-			// branch right
-			List<Rod> right = branch(pointer, possibilitiesRemaining);
+
+			// Branching right means to remove the item at the pointer
+			rightPossibilities.remove(pointer);
+			List<Rod> right = branch(pointer, rightPossibilities);
+			// return the better of the left or the right
+			return greaterRevenue(left, right);
 		}
 		return null;
 	}
 	
 	/**
-	 * length bounds are used for pruning the tree
+	 * Used to determine which list has a greater revenue by comparing the sum of the profits of each list
+	 * @param left the left list
+	 * @param right the right list
+	 * @return the list with a higher revenue
+	 */
+	public List<Rod> greaterRevenue(List<Rod> left, List<Rod> right) {
+		int sumLeft = 0;
+		int sumRight = 0;
+		return null;
+	}
+	
+	/**
+	 * Make sure the sum of the lengths before our current "point" are no large than the total length feasible
+	 * @param pointer every element before pointer is a valid element to consider keeping
 	 * @param rodList is the current rod list node within the branch and bound tree
 	 * @return true if the rod list length <= total length
 	 */
-	public boolean withinBounds(List<Rod> rodList) {
+	public boolean withinBounds(int pointer, List<Rod> rodList) {
 		int currentLength = 0;
-		for(Rod rod : rodList) {
-			currentLength += rod.getLength();
+		for(int i = 0; i < pointer; i++) {
+			currentLength += rodList.get(i).getLength();
 		}
 		return currentLength <= totalLength;
 	}
@@ -113,6 +142,7 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 		test.createNodePossibilities(list);
 	}
 	
+	// TODO: Is this even needed?
 	public static class Node {
 		int depth;
 		List<Rod> rodList;
