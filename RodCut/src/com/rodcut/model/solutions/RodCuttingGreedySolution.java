@@ -30,13 +30,4 @@ public class RodCuttingGreedySolution extends RodCuttingStrategy {
 		}
 		return selectedRods;
 	}
-
-	public double getMaximumRevenue(int totalLength, List<Rod> rodList) {
-		List<Rod> maximumRevenueRods = getMaximumRevenueRods(totalLength, rodList);
-		double sum = 0;
-		for (Rod rod : maximumRevenueRods) {
-			sum += rod.getPrice();
-		}
-		return sum;
-	}
 }
