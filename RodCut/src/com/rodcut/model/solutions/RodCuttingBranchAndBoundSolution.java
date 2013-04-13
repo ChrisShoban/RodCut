@@ -78,7 +78,11 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 			rightPossibilities.remove(pointer);
 			List<Rod> right = branch(pointer, rightPossibilities);
 			// return the better of the left or the right
-			return greaterRevenue(left, right);
+			List<Rod> result = greaterRevenue(left, right);
+			if(result == null) 
+				return possibilitiesRemaining;
+			else 
+				return result;
 		}
 		return null;
 	}
@@ -90,20 +94,31 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 	 * @return the list with a higher revenue
 	 */
 	public List<Rod> greaterRevenue(List<Rod> left, List<Rod> right) {
-		int sumLeft = 0;
-		int sumRight = 0;
-		for(Rod rod : left) {
-			sumLeft += rod.getPrice();
+		if(left == null) {
+			if(right == null) {
+				return null;
+			}
+			return right;
 		}
-		for(Rod rod : right) {
-			sumRight += rod.getPrice();
-		}
-		
-		if(sumLeft >= sumRight) {
+		else if(right == null) {
 			return left;
 		}
 		else {
-			return right;
+			int sumLeft = 0;
+			int sumRight = 0;
+			for(Rod rod : left) {
+				sumLeft += rod.getPrice();
+			}
+			for(Rod rod : right) {
+				sumRight += rod.getPrice();
+			}
+			
+			if(sumLeft >= sumRight) {
+				return left;
+			}
+			else {
+				return right;
+			}
 		}
 	}
 	
@@ -118,7 +133,7 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 		for(int i = 0; i < pointer; i++) {
 			currentLength += rodList.get(i).getLength();
 		}
-		return currentLength <= totalLength;
+		return currentLength <= totalLength && pointer < rodList.size();
 	}
 	
 	/**
