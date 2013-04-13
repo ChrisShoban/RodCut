@@ -1,6 +1,7 @@
 package com.rodcut.model.solutions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,13 +10,14 @@ import com.rodcut.model.RodCuttingStrategy;
 
 public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 
+	private int totalLength = 0;
 	private int nodeCapacity = 0;
 	private List<Rod> possibilities = new ArrayList<Rod>();
 	private List<String> discovered = new ArrayList<String>();
 	
-	
-	@Override
 	public List<Rod> getMaximumRevenueRods(int totalLength, List<Rod> rodList) {
+		createNodePossibilities(rodList);
+		this.totalLength = totalLength;
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -23,8 +25,9 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 	/**
 	 * 
 	 */
-	public void createNodePossibilities(int totalLength, List<Rod> rodList) {
+	public void createNodePossibilities(List<Rod> rodList) {
 		int currLen = 0;
+		totalLength = rodList.size();
 		for(int index = 0; index < totalLength; index++) {
 			currLen = rodList.get(index).getLength();
 			for(int eachRod = 0; eachRod < totalLength/currLen; eachRod++) {
@@ -36,25 +39,35 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 		}
 	}
 	
-	public void startBranchBound(int totalLength, List<Rod> rodList) {
-		int depth = 0;
+	public List<Rod> startBranchBound(List<Rod> rodList) {
+		int leftPointer = 0;
+		int rightPointer = 0;
+		List<Rod> leftPossibilities = new ArrayList<Rod>();
+		List<Rod> rightPossibilities = new ArrayList<Rod>();
+		Collections.copy(leftPossibilities, possibilities);
+		Collections.copy(rightPossibilities, possibilities);
 		// create root
 		// go left go right
 		// pass rodList left for processing
-		branch(totalLength, rodList, possibilities, depth);
-		branch(totalLength, rodList, possibilities, depth);
+		List<Rod> left = branch(leftPointer, leftPossibilities);
+		List<Rod> right = branch(rightPointer, rightPossibilities);
+		return null;
 	}
 	
-	public void branch(int totalLength, List<Rod> currentRodList, List<Rod> possibilitiesLeft, int depth) {
-		if(withinBounds(totalLength, currentRodList) && !(discovered.contains(createId(currentRodList, possibilitiesLeft)))) {
-			
+	public List<Rod> branch(int pointer, List<Rod> possibilitiesRemaining) {
+		if(withinBounds(possibilitiesRemaining)) { //&& !(discovered.contains(createId(currentRodList, possibilitiesLeft)))) {
+			List<Rod> leftPossibilities = new ArrayList<Rod>();
+			List<Rod> rightPossibilities = new ArrayList<Rod>();
+			Collections.copy(leftPossibilities, possibilitiesRemaining);
+			Collections.copy(rightPossibilities, possibilitiesRemaining);
 			// create a new rodList adding the next item to it
 			// branch left
-			branch(totalLength, currentRodList, possibilitiesLeft, depth);
+			List<Rod> left = branch(pointer + 1, possibilitiesRemaining);
 			// create a new rodList without adding the next item to it
 			// branch right
-			branch(totalLength, currentRodList, possibilitiesLeft, depth);
+			List<Rod> right = branch(pointer, possibilitiesRemaining);
 		}
+		return null;
 	}
 	
 	/**
@@ -62,7 +75,7 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 	 * @param rodList is the current rod list node within the branch and bound tree
 	 * @return true if the rod list length <= total length
 	 */
-	public boolean withinBounds(int totalLength, List<Rod> rodList) {
+	public boolean withinBounds(List<Rod> rodList) {
 		int currentLength = 0;
 		for(Rod rod : rodList) {
 			currentLength += rod.getLength();
@@ -97,7 +110,7 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 			list.add(new Rod(i, i, i));
 		}
 		RodCuttingBranchAndBoundSolution test = new RodCuttingBranchAndBoundSolution();
-		test.createNodePossibilities(list.size(), list);
+		test.createNodePossibilities(list);
 	}
 	
 	public static class Node {
