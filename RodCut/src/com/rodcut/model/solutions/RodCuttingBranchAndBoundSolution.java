@@ -133,20 +133,4 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 		}
 		return id.toString();
 	}
-	
-	/**
-	 * For testing ...
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		ArrayList<Rod> list = new ArrayList<Rod>();
-		for(int i = 1; i < 8; i++) {
-			if(i > 5) 
-				list.add(new Rod(i, i, i + 10));
-			else
-				list.add(new Rod(i, i, i + 1));
-		}
-		RodCuttingBranchAndBoundSolution test = new RodCuttingBranchAndBoundSolution();
-		test.getMaximumRevenueRods(list.size(), list);
-	}
 }

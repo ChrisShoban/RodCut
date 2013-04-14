@@ -30,19 +30,4 @@ public class RodCuttingGreedySolution extends RodCuttingStrategy {
 		}
 		return selectedRods;
 	}
-	
-	/**
-	 * For testing ...
-	 * @param args
-	 */
-	/**
-	public static void main(String[] args) {
-		ArrayList<Rod> list = new ArrayList<Rod>();
-		for(int i = 1; i < 8; i++) {
-				list.add(new Rod(i, i, i + 1));
-		}
-		RodCuttingGreedySolution test = new RodCuttingGreedySolution();
-		test.getMaximumRevenueRods(list.size(), list);
-	}
-	*/
 }
