@@ -18,9 +18,9 @@ public class RodCuttingGreedySolution extends RodCuttingStrategy {
 		int currentLength = 0;
 		int index = 0;
 		List<Rod> selectedRods = new ArrayList<Rod>();
-		while (currentLength <= totalLength) {
+		while (index < rodList.size()) {
 			Rod rod = rodList.get(index);
-			if (rod.getLength() <= currentLength) {
+			if (rod.getLength() + currentLength <= totalLength) {
 				selectedRods.add(new Rod(rod.getIndex(), rod.getLength(), rod.getPrice()));
 				currentLength += rod.getLength();
 			}
@@ -30,4 +30,19 @@ public class RodCuttingGreedySolution extends RodCuttingStrategy {
 		}
 		return selectedRods;
 	}
+	
+	/**
+	 * For testing ...
+	 * @param args
+	 */
+	/**
+	public static void main(String[] args) {
+		ArrayList<Rod> list = new ArrayList<Rod>();
+		for(int i = 1; i < 8; i++) {
+				list.add(new Rod(i, i, i + 1));
+		}
+		RodCuttingGreedySolution test = new RodCuttingGreedySolution();
+		test.getMaximumRevenueRods(list.size(), list);
+	}
+	*/
 }
