@@ -36,29 +36,10 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 										  rodList.get(index).getLength(), 
 										  rodList.get(index).getPrice()));
 			}
-			// nodeCapacity += totalLength/currLen;
 		}
 	}
 	
-	/*
-	public List<Rod> startBranchBound(List<Rod> rodList) {
-		int leftPointer = 0;
-		int rightPointer = 0;
-		List<Rod> leftPossibilities = new ArrayList<Rod>();
-		List<Rod> rightPossibilities = new ArrayList<Rod>();
-		Collections.copy(leftPossibilities, possibilities);
-		Collections.copy(rightPossibilities, possibilities);
-		// create root
-		// go left go right
-		// pass rodList left for processing
-		List<Rod> left = branch(leftPointer, leftPossibilities);
-		List<Rod> right = branch(rightPointer, rightPossibilities);
-		return null;
-	}
-	*/
-	
 	/**
-	 * TODO check that pointer does not exceed length of possibilities remaining
 	 * @param pointer
 	 * @param possibilitiesRemaining
 	 * @return
@@ -171,46 +152,5 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 		}
 		RodCuttingBranchAndBoundSolution test = new RodCuttingBranchAndBoundSolution();
 		test.getMaximumRevenueRods(list.size(), list);
-	}
-	
-	// TODO: Is this even needed?
-	public static class Node {
-		int depth;
-		List<Rod> rodList;
-		
-		Node parent;
-		Node leftChild;
-		Node rightChild;
-		
-		public int getDepth() {
-			return depth;
-		}
-		public void setDepth(int depth) {
-			this.depth = depth;
-		}
-		public List<Rod> getRodList() {
-			return rodList;
-		}
-		public void setRodList(List<Rod> rodList) {
-			this.rodList = rodList;
-		}
-		public Node getParent() {
-			return parent;
-		}
-		public void setParent(Node parent) {
-			this.parent = parent;
-		}
-		public Node getLeftChild() {
-			return leftChild;
-		}
-		public void setLeftChild(Node leftChild) {
-			this.leftChild = leftChild;
-		}
-		public Node getRightChild() {
-			return rightChild;
-		}
-		public void setRightChild(Node rightChild) {
-			this.rightChild = rightChild;
-		}
 	}
 }
