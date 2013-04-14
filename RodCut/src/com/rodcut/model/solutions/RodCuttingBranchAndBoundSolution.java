@@ -1,7 +1,6 @@
 package com.rodcut.model.solutions;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.rodcut.model.Rod;
@@ -19,7 +18,6 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 		this.totalLength = totalLength;
 		int depth = 0;
 		List<Rod> result = branch(0, possibilities, depth);
-		// TODO Auto-generated method stub
 		return result;
 	}
 	
@@ -39,7 +37,7 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 		}
 	}
 	
-	/**
+	/** Main recursive function for branching and ensuring each part is within the bounds set forward.
 	 * @param pointer
 	 * @param possibilitiesRemaining
 	 * @return
@@ -48,9 +46,7 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 		if(withinBounds(pointer, possibilitiesRemaining)) { //&& !(discovered.contains(createId(currentRodList, possibilitiesLeft)))) {
 			List<Rod> leftPossibilities = new ArrayList<Rod>(possibilitiesRemaining);
 			List<Rod> rightPossibilities = new ArrayList<Rod>(possibilitiesRemaining);
-			Collections.copy(leftPossibilities, possibilitiesRemaining);
-			Collections.copy(rightPossibilities, possibilitiesRemaining);
-			
+
 			// Branching left means to keep the item at the pointer
 			List<Rod> left = branch(pointer + 1, leftPossibilities, depth + 1);
 			// create a new rodList without adding the next item to it
