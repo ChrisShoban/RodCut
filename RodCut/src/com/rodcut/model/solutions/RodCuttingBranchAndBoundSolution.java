@@ -17,8 +17,8 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 	public List<Rod> getMaximumRevenueRods(int totalLength, List<Rod> rodList) {
 		createNodePossibilities(rodList);
 		this.totalLength = totalLength;
-		
-		List<Rod> result = branch(0, rodList);
+		int depth = 0;
+		List<Rod> result = branch(0, possibilities, depth);
 		// TODO Auto-generated method stub
 		return result;
 	}
@@ -63,24 +63,28 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 	 * @param possibilitiesRemaining
 	 * @return
 	 */
-	public List<Rod> branch(int pointer, List<Rod> possibilitiesRemaining) {
+	public List<Rod> branch(int pointer, List<Rod> possibilitiesRemaining, int depth) {
 		if(withinBounds(pointer, possibilitiesRemaining)) { //&& !(discovered.contains(createId(currentRodList, possibilitiesLeft)))) {
-			List<Rod> leftPossibilities = new ArrayList<Rod>();
-			List<Rod> rightPossibilities = new ArrayList<Rod>();
+			List<Rod> leftPossibilities = new ArrayList<Rod>(possibilitiesRemaining);
+			List<Rod> rightPossibilities = new ArrayList<Rod>(possibilitiesRemaining);
 			Collections.copy(leftPossibilities, possibilitiesRemaining);
 			Collections.copy(rightPossibilities, possibilitiesRemaining);
 			
 			// Branching left means to keep the item at the pointer
-			List<Rod> left = branch(pointer + 1, leftPossibilities);
+			List<Rod> left = branch(pointer + 1, leftPossibilities, depth + 1);
 			// create a new rodList without adding the next item to it
 
 			// Branching right means to remove the item at the pointer
 			rightPossibilities.remove(pointer);
-			List<Rod> right = branch(pointer, rightPossibilities);
+			List<Rod> right = branch(pointer, rightPossibilities, depth + 1);
 			// return the better of the left or the right
 			List<Rod> result = greaterRevenue(left, right);
-			if(result == null) 
+			if(result == null) {
+				for(int i = pointer; i <= possibilitiesRemaining.size(); i++) {
+					possibilitiesRemaining.remove(pointer);
+				}
 				return possibilitiesRemaining;
+			}
 			else 
 				return result;
 		}
