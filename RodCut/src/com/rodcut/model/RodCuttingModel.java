@@ -36,8 +36,8 @@ public class RodCuttingModel {
 		greedyAlgorithmMaximumRevenueRodList = context.getMaximumRevenueRodsStrategy(totalLength, prices);
 
 		context = new RodCuttingContext(new RodCuttingDynamicSolution());
-	//	dynamicAlgorithmMaximumRevenue = context.getMaximumRevenueStrategy(totalLength, prices);
-	//	dynamicAlgorithmMaximumRevenueRodList = context.getMaximumRevenueRodsStrategy(totalLength, prices);
+		dynamicAlgorithmMaximumRevenue = context.getMaximumRevenueStrategy(totalLength, prices);
+		dynamicAlgorithmMaximumRevenueRodList = context.getMaximumRevenueRodsStrategy(totalLength, prices);
 
 
 		context = new RodCuttingContext(new RodCuttingBranchAndBoundSolution());

@@ -9,6 +9,9 @@ public abstract class RodCuttingStrategy {
 	public double getMaximumRevenue(int totalLength, List<Rod> rodList) {
 		List<Rod> maximumRevenueRods = getMaximumRevenueRods(totalLength, rodList);
 		double sum = 0;
+		if(maximumRevenueRods == null) {
+			return sum;
+		}
 		for (Rod rod : maximumRevenueRods) {
 			sum += rod.getPrice();
 		}

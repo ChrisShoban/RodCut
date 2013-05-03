@@ -28,6 +28,22 @@ public class RodCuttingDynamicSolution extends RodCuttingStrategy{
 		}
 	}
 	
+	private void printTable(double[][] profits, int len, int id) {
+		System.out.print("\t");
+		for(int i = 1; i <= id; i++) {
+			System.out.print(i + "\t");
+		}
+		System.out.println();
+		
+		for(int i = 0; i < len; i++) {
+			System.out.print(i + "\t");
+			for(int j = 0; j < id; j++) {
+				System.out.print(profits[i][j] + "\t");
+			}
+			System.out.println();
+		}
+	}
+	
 	public List<Rod> getMaximumRevenueRods(int totalLength, List<Rod> rodList) {
 		// Similar to Knapsack, we make a list of possibilities to choose from which is large
 		// than the total length of the rod (same as objects exceeding knapsack capacity)
@@ -43,12 +59,11 @@ public class RodCuttingDynamicSolution extends RodCuttingStrategy{
 		// now we fill in the table to get the max revenue
 		for(int length = 0; length < totalLength; length++) {
 			for(int id = 0; id < idCount; id++) {
-				currentLength = rodList.get(id).getLength();
-				if(currentLength <= length + 1) {
 					profits[id][length] = maxProfit(id, length, rodList.get(id).getPrice(), possibilities, profits); // this is not right, but it will be similar to this maybe ...
-				}
 			}
 		}
+		
+		printTable(profits, totalLength, idCount);
 		
 		return null;
 	}
