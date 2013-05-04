@@ -70,8 +70,6 @@ public class RodCuttingDynamicSolution extends RodCuttingStrategy{
 	private List<Rod> trackBack(double[][] profits, int idCount, int length, List<Rod> rods) {
 		List<Rod> result = new ArrayList<Rod>();
 		while(idCount >= 0) {
-			if(profits[idCount][length] > 0) 
-			if(profits[idCount - 1][length] > 0) 
 			if(profits[idCount][length] != profits[idCount - 1][length]) {
 				result.add(rods.get(idCount));
 				length -= rods.get(idCount).getLength();
