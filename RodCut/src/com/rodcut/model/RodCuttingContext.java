@@ -11,8 +11,8 @@ public class RodCuttingContext {
 
 	public RodCuttingContext(RodCuttingStrategy strategy) {
 		this.strategy = strategy;
-		rodList = new ArrayList<>();
-		priceList = new ArrayList<>();
+		rodList = new ArrayList<Rod>();
+		priceList = new ArrayList<Double>();
 	}
 
 	public double getMaximumRevenueStrategy(int totalLength, ArrayList<Double> prices) {

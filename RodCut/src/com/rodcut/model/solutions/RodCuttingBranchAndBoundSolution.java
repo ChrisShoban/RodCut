@@ -51,8 +51,14 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 			currentLength += list.get(i).getLength();
 		}
 		// TODO: Perform Greedy for the TEMP length
-		int tempLength = totalLength - currentLength;
-		return currentOptimal > optimal;
+		// for everything after the pointer, perform Greedy Solution and get price for new ratio.
+		RodCuttingGreedySolution greedy = new RodCuttingGreedySolution();
+		List<Rod> rods = new ArrayList<Rod>();
+		for(int i = pointer; i < list.size(); i++) {
+			rods.add(list.get(i));
+		}
+		double rational = greedy.getMaximumRevenue(totalLength - currentLength, rods);
+		return currentOptimal + rational > optimal;
 	}
 	
 	/** Main recursive function for branching and ensuring each part is within the bounds set forward.
