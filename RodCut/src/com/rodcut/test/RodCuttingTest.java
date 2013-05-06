@@ -23,7 +23,7 @@ public class RodCuttingTest {
 //		long end;
 //		
 //		//start = Calendar.getInstance().getTimeInMillis();
-		System.out.println("Greedy Algorithm Maximum Revenue : " + model.getGreedyAlgorithmMaximumRevenue());
+//		System.out.println("Greedy Algorithm Maximum Revenue : " + model.getGreedyAlgorithmMaximumRevenue());
 //		//end = Calendar.getInstance().getTimeInMillis();
 //		//System.out.println(end - start);
 //		
@@ -33,7 +33,7 @@ public class RodCuttingTest {
 //		System.out.println(end - start);
 //		
 //		start = Calendar.getInstance().getTimeInMillis();
-//		System.out.println("Branch And Bound Algorithm Maximum Revenue : " + model.getBranchAndBoundAlgorithmMaximumRevenue());
+		System.out.println("Branch And Bound Algorithm Maximum Revenue : " + model.getBranchAndBoundAlgorithmMaximumRevenue());
 //		end = Calendar.getInstance().getTimeInMillis();
 //		System.out.println(end - start);
 		
