@@ -1,21 +1,15 @@
 package com.rodcut.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Observable;
 
 import com.rodcut.model.solutions.RodCuttingBranchAndBoundSolution;
 import com.rodcut.model.solutions.RodCuttingDynamicSolution;
 import com.rodcut.model.solutions.RodCuttingGreedySolution;
 
-public class RodCuttingModel extends Observable implements Serializable {
+public class RodCuttingModel {
 
-	private static final long serialVersionUID = 6943522103704481201L;
-
-	private int state = 0;
-	
 	private ArrayList<Rod> rods;
-	
+
 	private int currentIndex = 0;
 
 	private RodCuttingContext context;
@@ -36,32 +30,18 @@ public class RodCuttingModel extends Observable implements Serializable {
 
 	private ArrayList<Rod> divideAndConquerAlgorithmMaximumRevenueRodList;
 
-	public void setState(int newState) {
-        state = newState;
-        setChanged();
-        notifyObservers();
-       // clearChanged();
-    }
-
-    public int getState() {
-        return state;
-    }
-	
-    
-    public void createRod(int length, double price) {
-    		rods.add(new Rod(currentIndex++, length, price));
-    		setChanged();
-        notifyObservers();
+	public void createRod(int length, double price) {
+		rods.add(new Rod(currentIndex++, length, price));
 	}
-    
-    public RodCuttingModel() {
-    		rods = new ArrayList<Rod>();
-    }
-    
-    public ArrayList<Rod> getRodList() {
-    		return rods;
-    }
-    
+
+	public RodCuttingModel() {
+		rods = new ArrayList<Rod>();
+	}
+
+	public ArrayList<Rod> getRodList() {
+		return rods;
+	}
+
 	public RodCuttingModel(int totalLength, ArrayList<Rod> rods) {
 
 		context = new RodCuttingContext(new RodCuttingGreedySolution());
