@@ -2,6 +2,8 @@ package com.rodcut.view;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Label;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -20,40 +22,31 @@ public class RodCuttingView extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
 	private RodCuttingModel model;
 	private RodCuttingController myController;
-	private JTextField newState, price, length;
-	private JLabel aNewState, currentState, priceLabel, lengthLabel, currentRods;
+	private JTextField price, length;
+	private JLabel priceLabel, lengthLabel, currentRods;
 	private JButton addRodBtn;
+	private JPanel inputRodTable;
 
 	public RodCuttingView(RodCuttingModel m) {
 		this.setPreferredSize(new Dimension(200, 200));
 		this.setLayout(new FlowLayout());
 		model = m;
 		myController = new RodCuttingController(model, this);
-		aNewState = new JLabel("new state =\t");
-		newState = new JTextField(10);
-		newState.setActionCommand("newState");
-		newState.addActionListener(myController);
-
-		currentState = new JLabel("current state =\t");
-		// wire components:
-		//add(aNewState);
-		//add(newState);
-		//add(currentState);		
-		
 		addLengthLabel();
 		addPriceLabel();
 		addRodBtn();
 		currentRods();
-		
-		
 		model.addObserver(this);
 	}
-	
+
 	private void currentRods() {
-		currentRods = new JLabel("ABC");
+		currentRods = new JLabel("CURRENT ROD LIST");
 		add(currentRods);
+		inputRodTable = new JPanel();
+		inputRodTable.setLayout(new GridLayout(1,1));
+		inputRodTable.add(new Label( "a"));
+        add(inputRodTable);
 	}
-	
 
 	private void addLengthLabel() {
 		lengthLabel = new JLabel("Length : ");
@@ -62,15 +55,15 @@ public class RodCuttingView extends JPanel implements Observer {
 		add(lengthLabel);
 		add(length);
 	}
-	
+
 	public String getPriceText() {
 		return price.getText();
 	}
-	
+
 	public String getLengthText() {
 		return length.getText();
 	}
-	
+
 	private void addPriceLabel() {
 		priceLabel = new JLabel("Price : ");
 		price = new JTextField(10);
@@ -78,7 +71,7 @@ public class RodCuttingView extends JPanel implements Observer {
 		add(priceLabel);
 		add(price);
 	}
-	
+
 	private void addRodBtn() {
 		addRodBtn = new JButton("ADD ROD");
 		addRodBtn.setActionCommand("addRodBtn");
@@ -88,20 +81,15 @@ public class RodCuttingView extends JPanel implements Observer {
 
 	public void update(Observable m, Object msg) {
 		if (m instanceof RodCuttingModel) {
-			
-			String txt = "aa";
-			
 			ArrayList<Rod> rods = model.getRodList();
-			for(Rod rod : rods) {
-				System.out.println(rods.size());
-				txt = rod.getLength() + " " + rod.getPrice();
+			int numberOfRows = (int) Math.ceil((double)rods.size()/2);
+			inputRodTable.setLayout(new GridLayout(numberOfRows,2));
+			for (Rod rod : rods) {
+				inputRodTable = new JPanel();
+				inputRodTable.add(new Label(rod.getLength() + ""));
+				inputRodTable.add(new Label(rod.getPrice() + ""));
 			}
-			System.out.println(txt);
-			// newState = new JTextField("");
-			// add(newState);
-			currentRods.setText(txt);
-			// add(currentState);
-			// repaint();
 		}
+		repaint();
 	}
 }
