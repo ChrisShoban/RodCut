@@ -1,7 +1,6 @@
 package com.rodcut.model.solutions;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.rodcut.model.Rod;
 import com.rodcut.model.RodCuttingStrategy;
@@ -10,12 +9,12 @@ public class RodCuttingDynamicSolution extends RodCuttingStrategy{
 
 	private int totalLength = 0;
 	//private int nodeCapacity = 0;
-	private List<Rod> possibilities = new ArrayList<Rod>();
+	private ArrayList<Rod> possibilities = new ArrayList<Rod>();
 	
 	/**
 	 * 
 	 */
-	public void createNodePossibilities(List<Rod> rodList) {
+	public void createNodePossibilities(ArrayList<Rod> rodList) {
 		int currLen = 0;
 		int priceListLength = rodList.size();
 		for(int index = 0; index < priceListLength; index++) {
@@ -28,7 +27,7 @@ public class RodCuttingDynamicSolution extends RodCuttingStrategy{
 		}
 	}
 	
-	public List<Rod> getMaximumRevenueRods(int totalLength, List<Rod> rodList) {
+	public ArrayList<Rod> getMaximumRevenueRods(int totalLength, ArrayList<Rod> rodList) {
 		this.totalLength = totalLength;
 		// Similar to Knapsack, we make a list of possibilities to choose from which is large
 		// than the total length of the rod (same as objects exceeding knapsack capacity)
@@ -63,13 +62,13 @@ public class RodCuttingDynamicSolution extends RodCuttingStrategy{
 		}
 		//*/
 		
-		List<Rod> results = trackBack(profits, possibilities.size() - 1,totalLength, possibilities);
+		ArrayList<Rod> results = trackBack(profits, possibilities.size() - 1,totalLength, possibilities);
 		
 		return results;
 	}
 	
-	private List<Rod> trackBack(double[][] profits, int idCount, int length, List<Rod> rods) {
-		List<Rod> result = new ArrayList<Rod>();
+	private ArrayList<Rod> trackBack(double[][] profits, int idCount, int length, ArrayList<Rod> rods) {
+		ArrayList<Rod> result = new ArrayList<Rod>();
 		while(idCount > 0) {
 			if(profits[idCount][length] != profits[idCount - 1][length]) {
 				result.add(rods.get(idCount));
@@ -84,7 +83,7 @@ public class RodCuttingDynamicSolution extends RodCuttingStrategy{
 		return result;
 	}
 	
-	public double maxProfit(int jthObject, int currentLength, double profitJ, List<Rod> rods, double[][] table) {
+	public double maxProfit(int jthObject, int currentLength, double profitJ, ArrayList<Rod> rods, double[][] table) {
 		double tryToAddObject = 0;
 		double dontTryToAddObject = 0;
 		int currentRodLength = rods.get(jthObject).getLength();

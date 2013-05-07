@@ -1,12 +1,8 @@
 package com.rodcut.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import com.rodcut.model.solutions.RodCuttingBranchAndBoundSolution;
-import com.rodcut.model.solutions.RodCuttingDivideAndConquerSolution;
 import com.rodcut.model.solutions.RodCuttingDynamicSolution;
-import com.rodcut.model.solutions.RodCuttingGreedySolution;
 
 public class RodCuttingModel {
 	
@@ -20,13 +16,13 @@ public class RodCuttingModel {
 	
 	private double divideAndConquerAlgorithmMaximumRevenue;
 	
-	private List<Rod> greedyAlgorithmMaximumRevenueRodList;
+	private ArrayList<Rod> greedyAlgorithmMaximumRevenueRodList;
 	
-	private List<Rod> dynamicAlgorithmMaximumRevenueRodList;
+	private ArrayList<Rod> dynamicAlgorithmMaximumRevenueRodList;
 	
-	private List<Rod> branchAndBoundAlgorithmMaximumRevenueRodList;
+	private ArrayList<Rod> branchAndBoundAlgorithmMaximumRevenueRodList;
 	
-	private List<Rod> divideAndConquerAlgorithmMaximumRevenueRodList;
+	private ArrayList<Rod> divideAndConquerAlgorithmMaximumRevenueRodList;
 	
 	
 	public RodCuttingModel(int totalLength, ArrayList<Double> prices) {
@@ -36,8 +32,8 @@ public class RodCuttingModel {
 //		greedyAlgorithmMaximumRevenueRodList = context.getMaximumRevenueRodsStrategy(totalLength, prices);
 
 		context = new RodCuttingContext(new RodCuttingDynamicSolution());
-		dynamicAlgorithmMaximumRevenue = context.getMaximumRevenueStrategy(totalLength, prices);
 		dynamicAlgorithmMaximumRevenueRodList = context.getMaximumRevenueRodsStrategy(totalLength, prices);
+		dynamicAlgorithmMaximumRevenue = context.getPricesFromRodsStrategy(totalLength, dynamicAlgorithmMaximumRevenueRodList);
 
 
 //		context = new RodCuttingContext(new RodCuttingBranchAndBoundSolution());
@@ -81,25 +77,25 @@ public class RodCuttingModel {
 
 
 
-	public List<Rod> getGreedyAlgorithmMaximumRevenueRodList() {
+	public ArrayList<Rod> getGreedyAlgorithmMaximumRevenueRodList() {
 		return greedyAlgorithmMaximumRevenueRodList;
 	}
 
 
 
-	public List<Rod> getDynamicAlgorithmMaximumRevenueRodList() {
+	public ArrayList<Rod> getDynamicAlgorithmMaximumRevenueRodList() {
 		return dynamicAlgorithmMaximumRevenueRodList;
 	}
 
 
 
-	public List<Rod> getBranchAndBoundAlgorithmMaximumRevenueRodList() {
+	public ArrayList<Rod> getBranchAndBoundAlgorithmMaximumRevenueRodList() {
 		return branchAndBoundAlgorithmMaximumRevenueRodList;
 	}
 
 
 
-	public List<Rod> getDivideAndConquerAlgorithmMaximumRevenueRodList() {
+	public ArrayList<Rod> getDivideAndConquerAlgorithmMaximumRevenueRodList() {
 		return divideAndConquerAlgorithmMaximumRevenueRodList;
 	}
 }

@@ -1,12 +1,11 @@
 package com.rodcut.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RodCuttingContext {
 
 	private RodCuttingStrategy strategy;
-	private List<Rod> rodList;
+	private ArrayList<Rod> rodList;
 	private ArrayList<Double> priceList;
 
 	public RodCuttingContext(RodCuttingStrategy strategy) {
@@ -15,12 +14,11 @@ public class RodCuttingContext {
 		priceList = new ArrayList<Double>();
 	}
 
-	public double getMaximumRevenueStrategy(int totalLength, ArrayList<Double> prices) {
-		createRods(totalLength, prices);
-		return this.strategy.getMaximumRevenue(totalLength, rodList);
+	public double getPricesFromRodsStrategy(int totalLength, ArrayList<Rod> rods) {
+		return this.strategy.getPricesFromRodsStrategy(totalLength, rods);
 	}
 
-	public List<Rod> getMaximumRevenueRodsStrategy(int totalLength, ArrayList<Double> prices) {
+	public ArrayList<Rod> getMaximumRevenueRodsStrategy(int totalLength, ArrayList<Double> prices) {
 		createRods(totalLength, prices);
 		return this.strategy.getMaximumRevenueRods(totalLength, rodList);
 	}

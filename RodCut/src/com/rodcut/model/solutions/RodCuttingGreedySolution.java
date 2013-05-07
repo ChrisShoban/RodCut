@@ -1,7 +1,6 @@
 package com.rodcut.model.solutions;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.rodcut.model.Rod;
 import com.rodcut.model.RodCuttingCommon;
@@ -9,7 +8,7 @@ import com.rodcut.model.RodCuttingStrategy;
 
 public class RodCuttingGreedySolution extends RodCuttingStrategy {
 
-	public List<Rod> getMaximumRevenueRods(int totalLength, List<Rod> rodList) {
+	public ArrayList<Rod> getMaximumRevenueRods(int totalLength, ArrayList<Rod> rodList) {
 
 		// sort rods by price length ratio
 		rodList = RodCuttingCommon.getInstance().sortByPriceLengthRatio(rodList);
@@ -17,7 +16,7 @@ public class RodCuttingGreedySolution extends RodCuttingStrategy {
 		// greedy add rods until sum of selected rods length not > total length
 		int currentLength = 0;
 		int index = 0;
-		List<Rod> selectedRods = new ArrayList<Rod>();
+		ArrayList<Rod> selectedRods = new ArrayList<Rod>();
 		while (index < rodList.size()) {
 			Rod rod = rodList.get(index);
 			if (rod.getLength() + currentLength <= totalLength) {
