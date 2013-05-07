@@ -1,50 +1,54 @@
 package com.rodcut.test;
 
-//import java.text.DateFormat;
-//import java.text.SimpleDateFormat;
+import java.awt.Dimension;
 import java.util.ArrayList;
-//import java.util.Calendar;
 
-
-
+import javax.swing.JFrame;
 
 import com.rodcut.model.Rod;
 import com.rodcut.model.RodCuttingModel;
+import com.rodcut.view.RodCuttingView;
 
 public class RodCuttingTest {
-	
-	
+
 	public static void main(String[] args) throws InterruptedException {
-		
+
 		ArrayList<Rod> rodList1 = new ArrayList<Rod>();
 		int index = 0;
 		rodList1.add(new Rod(index++, 1, 1));
 		rodList1.add(new Rod(index++, 2, 6));
 		rodList1.add(new Rod(index++, 3, 3));
 		rodList1.add(new Rod(index++, 4, 4));
-		
+
 		int totalLength = 11;
 		RodCuttingModel model = new RodCuttingModel(totalLength, rodList1);
-
-//		Calendar cal;
-//		long start;
-//		long end;
-//		
-//		//start = Calendar.getInstance().getTimeInMillis();
-		System.out.println("Greedy Algorithm Maximum Revenue : " + model.getGreedyAlgorithmMaximumRevenue());
-//		//end = Calendar.getInstance().getTimeInMillis();
-//		//System.out.println(end - start);
-//		
-//		//start = Calendar.getInstance().getTimeInMillis();
-		System.out.println("Dynamic Programming Algorithm Maximum Revenue : " + model.getDynamicAlgorithmMaximumRevenue());
-//		end = Calendar.getInstance().getTimeInMillis();
-//		System.out.println(end - start);
-//		
-//		start = Calendar.getInstance().getTimeInMillis();
-//		System.out.println("Branch And Bound Algorithm Maximum Revenue : " + model.getBranchAndBoundAlgorithmMaximumRevenue());
-//		end = Calendar.getInstance().getTimeInMillis();
-//		System.out.println(end - start);
+		printWithTime("Greedy Algorithm Maximum Revenue : " , model.getGreedyAlgorithmMaximumRevenue());
+		printWithTime("Dynamic Programming Algorithm Maximum Revenue : ", model.getDynamicAlgorithmMaximumRevenue());
+		printWithTime("Branch And Bound Algorithm Maximum Revenue : ",  model.getBranchAndBoundAlgorithmMaximumRevenue());
 		
-		// System.out.println("Divide And Conquer Algorithm Maximum Revenue : " + model.getDivideAndConquerAlgorithmMaximumRevenue());
+		JFrame gui = new JFrame();
+		gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		gui.setTitle("Rod Cutting");
+		gui.add(new RodCuttingView(new RodCuttingModel()));
+		gui.setPreferredSize(new Dimension(800, 500));
+		gui.pack();
+		gui.setVisible(true);
+		
+		
+
+		/*
+		 * myModel.addObserver(this); 
+		 * newState.addActionListener(myController); 
+		 * JTextField field = (JTextField)ae.getSource(); // get's the source typed into the Textfield
+		 */
+	}
+	
+	private static void printWithTime(String text, double revenue) {
+		//long start = Calendar.getInstance().getTimeInMillis();
+		//System.out.println(start);
+		System.out.println(text + revenue);
+		//long end = Calendar.getInstance().getTimeInMillis();
+		//System.out.println(end);
+		//System.out.println("TIME TAKEN : " + (end - start));
 	}
 }
