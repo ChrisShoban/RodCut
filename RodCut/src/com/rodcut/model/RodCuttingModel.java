@@ -25,22 +25,25 @@ public class RodCuttingModel {
 	private ArrayList<Rod> branchAndBoundAlgorithmMaximumRevenueRodList;
 
 	private ArrayList<Rod> divideAndConquerAlgorithmMaximumRevenueRodList;
-
-	public RodCuttingModel(int totalLength, ArrayList<Rod> rods) {
-
+	
+	public void runGreedy(int totalLength, ArrayList<Rod> rods){
 		context = new RodCuttingContext(new RodCuttingGreedySolution());
 		greedyAlgorithmMaximumRevenueRodList = context.getMaximumRevenueRodsStrategy(totalLength, rods);
 		greedyAlgorithmMaximumRevenue = RodCuttingCommon.getInstance().getPricesFromRodsStrategy(greedyAlgorithmMaximumRevenueRodList);
+	}
 
+	public void runDynamic(int totalLength, ArrayList<Rod> rods){
 		context = new RodCuttingContext(new RodCuttingDynamicSolution());
 		dynamicAlgorithmMaximumRevenueRodList = context.getMaximumRevenueRodsStrategy(totalLength, rods);
 		dynamicAlgorithmMaximumRevenue = RodCuttingCommon.getInstance().getPricesFromRodsStrategy(dynamicAlgorithmMaximumRevenueRodList);
-
+	}
+	
+	public void runBranchAndBound(int totalLength, ArrayList<Rod> rods){
 		context = new RodCuttingContext(new RodCuttingBranchAndBoundSolution());
 		branchAndBoundAlgorithmMaximumRevenueRodList = context.getMaximumRevenueRodsStrategy(totalLength, rods);
 		branchAndBoundAlgorithmMaximumRevenue = RodCuttingCommon.getInstance().getPricesFromRodsStrategy(branchAndBoundAlgorithmMaximumRevenueRodList);
 	}
-
+	
 	public RodCuttingContext getContext() {
 		return context;
 	}

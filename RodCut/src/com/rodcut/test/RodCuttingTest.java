@@ -15,11 +15,29 @@ public class RodCuttingTest {
 
 	public static void main(String[] args) throws InterruptedException {
 		getInput();
-		RodCuttingModel model = new RodCuttingModel(totalLength, rods);
+		RodCuttingModel model = new RodCuttingModel();
+		
+		System.out.println("*******************************************************");
+		System.out.println("*********** GREEDY ALGORITHM FOR ROD CUTTING **********");
+		System.out.println("*******************************************************");
+		model.runGreedy(totalLength, rods);
 		printWithTime("Greedy Algorithm Maximum Revenue : ", model.getGreedyAlgorithmMaximumRevenue());
+		System.out.println("\n\n\n");
+		
+		System.out.println("*******************************************************");
+		System.out.println("*********** DYNAMIC PROGRAMMING ***********************");
+		System.out.println("*******************************************************");
+		model.runDynamic(totalLength, rods);
 		printWithTime("Dynamic Programming Algorithm Maximum Revenue : ", model.getDynamicAlgorithmMaximumRevenue());
-		printWithTime("Branch And Bound Algorithm Maximum Revenue : ", model.getBranchAndBoundAlgorithmMaximumRevenue());
+		System.out.println("\n\n\n");
 
+		
+		System.out.println("*************************************************");
+		System.out.println("*********** BRANCH AND BOUND ALGORITHM **********");
+		System.out.println("*************************************************");
+		model.runBranchAndBound(totalLength, rods);
+		printWithTime("Branch And Bound Algorithm Maximum Revenue : ", model.getBranchAndBoundAlgorithmMaximumRevenue());
+		System.out.println("\n\n\n");
 	}
 
 	private static void getInput() {
@@ -44,12 +62,16 @@ public class RodCuttingTest {
 		}
 		catch (InputMismatchException e) {
 			System.err.println("YOUR INPUT IS NOT WELL FORMATTED. PLEASE CHECK INSTRUCTIONS.");
+			System.exit(1);
 		}
 		catch (NumberFormatException e) {
 			System.err.println("YOUR INPUT IS NOT WELL FORMATTED. PLEASE CHECK INSTRUCTIONS.");
+			System.exit(1);
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			// e.printStackTrace();
+			System.err.println("WE ARE FACING TECHNICAL DIFFUCULTIES. PLEASE TRY AGAIN LATER.");
+			System.exit(1);
 		}
 
 	}
