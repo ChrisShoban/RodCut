@@ -60,10 +60,7 @@ public class RodCuttingDynamicSolution extends RodCuttingStrategy{
 			}
 			System.out.println();
 		}
-		//*/
-		
 		ArrayList<Rod> results = trackBack(profits, possibilities.size() - 1,totalLength, possibilities);
-		
 		return results;
 	}
 	

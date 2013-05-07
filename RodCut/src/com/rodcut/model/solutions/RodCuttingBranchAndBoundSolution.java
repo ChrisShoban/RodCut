@@ -10,9 +10,7 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 
 	private int optimal = 0;
 	private int totalLength = 0;
-	//private int nodeCapacity = 0;
 	private ArrayList<Rod> possibilities = new ArrayList<Rod>();
-	//private List<String> discovered = new ArrayList<String>();
 	
 	public ArrayList<Rod> getMaximumRevenueRods(int totalLength, ArrayList<Rod> rodList) {
 		this.totalLength = totalLength;
@@ -24,10 +22,7 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 		return result;
 	}
 	
-	/**
-	 * 
-	 */
-	public void createNodePossibilities(ArrayList<Rod> rodList) {
+	private void createNodePossibilities(ArrayList<Rod> rodList) {
 		int currLen = 0;
 		int priceListLength = rodList.size();
 		for(int index = 0; index < priceListLength; index++) {
@@ -56,16 +51,16 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 		for(int i = pointer; i < list.size(); i++) {
 			rods.add(list.get(i));
 		}
-		double rational = greedy.getPricesFromRodsStrategy(totalLength - currentLength, rods);
+		double rational = RodCuttingCommon.getInstance().getPricesFromRodsStrategy(greedy.getMaximumRevenueRods(totalLength - currentLength, rods));
 		return currentOptimal + rational > optimal;
 	}
-	
+		
 	/** Main recursive function for branching and ensuring each part is within the bounds set forward.
 	 * @param pointer
 	 * @param possibilitiesRemaining
 	 * @return
 	 */
-	public ArrayList<Rod> branch(int pointer, ArrayList<Rod> possibilitiesRemaining, int depth, String text) {
+	private ArrayList<Rod> branch(int pointer, ArrayList<Rod> possibilitiesRemaining, int depth, String text) {
 		if(withinBounds(pointer, possibilitiesRemaining) && isBetterThanOptimal(possibilitiesRemaining, pointer)) {
 			System.out.println("From " + text + " with pointer " + pointer + " and possibilities available of length ...");
 			for(int i = 0; i < depth; i++) {
@@ -114,7 +109,7 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 	 * @param right the right list
 	 * @return the list with a higher revenue
 	 */
-	public ArrayList<Rod> greaterRevenue(ArrayList<Rod> left, ArrayList<Rod> right) {
+	private ArrayList<Rod> greaterRevenue(ArrayList<Rod> left, ArrayList<Rod> right) {
 		if(left == null) {
 			if(right == null) {
 				return null;
@@ -149,7 +144,7 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 	 * @param rodList is the current rod list node within the branch and bound tree
 	 * @return true if the rod list length <= total length
 	 */
-	public boolean withinBounds(int pointer, ArrayList<Rod> rodList) {
+	private boolean withinBounds(int pointer, ArrayList<Rod> rodList) {
 		int currentLength = 0;
 		for(int i = 0; i < pointer; i++) {
 			currentLength += rodList.get(i).getLength();
@@ -162,7 +157,7 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 	 * @param rodList
 	 * @return
 	 */
-	public String createId(ArrayList<Rod> currentRodList, ArrayList<Rod> possibilitiesLeft) {
+	private String createId(ArrayList<Rod> currentRodList, ArrayList<Rod> possibilitiesLeft) {
 		StringBuilder id = new StringBuilder();
 		for(Rod rod : currentRodList) {
 			id.append(rod.getIndex());

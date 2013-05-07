@@ -19,4 +19,16 @@ public class RodCuttingCommon {
 		return rodList;
 	}
 	
+	public double getPricesFromRodsStrategy(ArrayList<Rod> rodList) {
+		ArrayList<Rod> maximumRevenueRods = rodList;
+		double sum = 0;
+		if(maximumRevenueRods == null) {
+			return sum;
+		}
+		for (Rod rod : maximumRevenueRods) {
+			sum += rod.getPrice();
+		}
+		return sum;
+	}
+	
 }

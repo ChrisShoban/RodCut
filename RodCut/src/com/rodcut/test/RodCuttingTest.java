@@ -5,36 +5,33 @@ package com.rodcut.test;
 import java.util.ArrayList;
 //import java.util.Calendar;
 
+
+
+
+import com.rodcut.model.Rod;
 import com.rodcut.model.RodCuttingModel;
 
 public class RodCuttingTest {
 	
+	
 	public static void main(String[] args) throws InterruptedException {
 		
-		
-		ArrayList<Double> prices = new ArrayList<Double>();
-		/*
-		// Test A
-		int totalLength = 4;
-		prices.add(1.0);
-		prices.add(6.0);
-		prices.add(3.0);
-		prices.add(4.0);
-		//*/
+		ArrayList<Rod> rodList1 = new ArrayList<Rod>();
+		int index = 0;
+		rodList1.add(new Rod(index++, 1, 1));
+		rodList1.add(new Rod(index++, 2, 6));
+		rodList1.add(new Rod(index++, 3, 3));
+		rodList1.add(new Rod(index++, 4, 4));
 		
 		int totalLength = 11;
-		prices.add(1.0);
-		prices.add(6.0);
-		prices.add(3.0);
-		prices.add(4.0);
-		RodCuttingModel model = new RodCuttingModel(totalLength, prices);
+		RodCuttingModel model = new RodCuttingModel(totalLength, rodList1);
 
 //		Calendar cal;
 //		long start;
 //		long end;
 //		
 //		//start = Calendar.getInstance().getTimeInMillis();
-//		System.out.println("Greedy Algorithm Maximum Revenue : " + model.getGreedyAlgorithmMaximumRevenue());
+		System.out.println("Greedy Algorithm Maximum Revenue : " + model.getGreedyAlgorithmMaximumRevenue());
 //		//end = Calendar.getInstance().getTimeInMillis();
 //		//System.out.println(end - start);
 //		
