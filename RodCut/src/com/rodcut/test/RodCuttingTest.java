@@ -30,7 +30,7 @@ public class RodCuttingTest {
 			System.out.println("Enter total length capacity [int] : ");
 			totalLength = scanner.nextInt();
 			
-			System.out.println("Enter number of rods [int] : ");
+			System.out.println("Enter number of rods for price list [int] : ");
 			int numberOfRods = scanner.nextInt();
 			
 			for(int i = 0; i < numberOfRods; i++) {

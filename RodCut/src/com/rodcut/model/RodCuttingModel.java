@@ -8,10 +8,6 @@ import com.rodcut.model.solutions.RodCuttingGreedySolution;
 
 public class RodCuttingModel {
 
-	private ArrayList<Rod> rods;
-
-	private int currentIndex = 0;
-
 	private RodCuttingContext context;
 
 	private double greedyAlgorithmMaximumRevenue;
@@ -29,18 +25,6 @@ public class RodCuttingModel {
 	private ArrayList<Rod> branchAndBoundAlgorithmMaximumRevenueRodList;
 
 	private ArrayList<Rod> divideAndConquerAlgorithmMaximumRevenueRodList;
-
-	public void createRod(int length, double price) {
-		rods.add(new Rod(currentIndex++, length, price));
-	}
-
-	public RodCuttingModel() {
-		rods = new ArrayList<Rod>();
-	}
-
-	public ArrayList<Rod> getRodList() {
-		return rods;
-	}
 
 	public RodCuttingModel(int totalLength, ArrayList<Rod> rods) {
 
