@@ -10,8 +10,19 @@ import com.rodcut.model.RodCuttingModel;
 public class RodCuttingTest {
 	
 	public static void main(String[] args) throws InterruptedException {
-		int totalLength = 4;
+		
+		
 		ArrayList<Double> prices = new ArrayList<Double>();
+		/*
+		// Test A
+		int totalLength = 4;
+		prices.add(1.0);
+		prices.add(6.0);
+		prices.add(3.0);
+		prices.add(4.0);
+		//*/
+		
+		int totalLength = 11;
 		prices.add(1.0);
 		prices.add(6.0);
 		prices.add(3.0);
@@ -28,12 +39,12 @@ public class RodCuttingTest {
 //		//System.out.println(end - start);
 //		
 //		//start = Calendar.getInstance().getTimeInMillis();
-		//System.out.println("Dynamic Programming Algorithm Maximum Revenue : " + model.getDynamicAlgorithmMaximumRevenue());
+		System.out.println("Dynamic Programming Algorithm Maximum Revenue : " + model.getDynamicAlgorithmMaximumRevenue());
 //		end = Calendar.getInstance().getTimeInMillis();
 //		System.out.println(end - start);
 //		
 //		start = Calendar.getInstance().getTimeInMillis();
-		System.out.println("Branch And Bound Algorithm Maximum Revenue : " + model.getBranchAndBoundAlgorithmMaximumRevenue());
+//		System.out.println("Branch And Bound Algorithm Maximum Revenue : " + model.getBranchAndBoundAlgorithmMaximumRevenue());
 //		end = Calendar.getInstance().getTimeInMillis();
 //		System.out.println(end - start);
 		

@@ -16,9 +16,9 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 	//private List<String> discovered = new ArrayList<String>();
 	
 	public List<Rod> getMaximumRevenueRods(int totalLength, List<Rod> rodList) {
-		createNodePossibilities(rodList);
 		this.totalLength = totalLength;
 		int depth = 0;
+		createNodePossibilities(rodList);
 		// SORT BY PRICE RATIO!!!
 		possibilities = RodCuttingCommon.getInstance().sortByPriceLengthRatio(possibilities);
 		List<Rod> result = branch(0, possibilities, depth, "root");
@@ -30,8 +30,8 @@ public class RodCuttingBranchAndBoundSolution extends RodCuttingStrategy{
 	 */
 	public void createNodePossibilities(List<Rod> rodList) {
 		int currLen = 0;
-		totalLength = rodList.size();
-		for(int index = 0; index < totalLength; index++) {
+		int priceListLength = rodList.size();
+		for(int index = 0; index < priceListLength; index++) {
 			currLen = rodList.get(index).getLength();
 			for(int eachRod = 0; eachRod < totalLength/currLen; eachRod++) {
 				possibilities.add(new Rod(rodList.get(index).getIndex(), 

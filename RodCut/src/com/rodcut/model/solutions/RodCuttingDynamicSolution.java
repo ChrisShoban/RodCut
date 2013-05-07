@@ -17,8 +17,8 @@ public class RodCuttingDynamicSolution extends RodCuttingStrategy{
 	 */
 	public void createNodePossibilities(List<Rod> rodList) {
 		int currLen = 0;
-		totalLength = rodList.size();
-		for(int index = 0; index < totalLength; index++) {
+		int priceListLength = rodList.size();
+		for(int index = 0; index < priceListLength; index++) {
 			currLen = rodList.get(index).getLength();
 			for(int eachRod = 0; eachRod < totalLength/currLen; eachRod++) {
 				possibilities.add(new Rod(rodList.get(index).getIndex() + eachRod, 
@@ -29,6 +29,7 @@ public class RodCuttingDynamicSolution extends RodCuttingStrategy{
 	}
 	
 	public List<Rod> getMaximumRevenueRods(int totalLength, List<Rod> rodList) {
+		this.totalLength = totalLength;
 		// Similar to Knapsack, we make a list of possibilities to choose from which is large
 		// than the total length of the rod (same as objects exceeding knapsack capacity)
 		createNodePossibilities(rodList);
@@ -47,7 +48,7 @@ public class RodCuttingDynamicSolution extends RodCuttingStrategy{
 		}
 		
 		// Print Table
-		/*
+		//*
 		System.out.print("\t");
 		for(int len = 0; len <= totalLength; len++) {
 			System.out.print(len + "\t");
@@ -60,7 +61,7 @@ public class RodCuttingDynamicSolution extends RodCuttingStrategy{
 			}
 			System.out.println();
 		}
-		*/
+		//*/
 		
 		List<Rod> results = trackBack(profits, possibilities.size() - 1,totalLength, possibilities);
 		
@@ -69,12 +70,16 @@ public class RodCuttingDynamicSolution extends RodCuttingStrategy{
 	
 	private List<Rod> trackBack(double[][] profits, int idCount, int length, List<Rod> rods) {
 		List<Rod> result = new ArrayList<Rod>();
-		while(idCount >= 0) {
+		while(idCount > 0) {
 			if(profits[idCount][length] != profits[idCount - 1][length]) {
 				result.add(rods.get(idCount));
 				length -= rods.get(idCount).getLength();
 			}
 			idCount--;
+		}
+		if(profits[idCount][length] > 0) {
+			result.add(rods.get(idCount));
+			length -= rods.get(idCount).getLength();
 		}
 		return result;
 	}
