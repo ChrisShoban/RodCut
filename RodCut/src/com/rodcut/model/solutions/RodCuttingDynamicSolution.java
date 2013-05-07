@@ -25,7 +25,6 @@ public class RodCuttingDynamicSolution extends RodCuttingStrategy{
 										  rodList.get(index).getPrice()));
 			}
 		}
-		String.valueOf(currLen);
 	}
 	
 	public ArrayList<Rod> getMaximumRevenueRods(int totalLength, ArrayList<Rod> rodList) {

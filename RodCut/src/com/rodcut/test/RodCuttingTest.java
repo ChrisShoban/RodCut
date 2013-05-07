@@ -70,7 +70,7 @@ public class RodCuttingTest {
 		}
 		catch (Exception e) {
 			// e.printStackTrace();
-			System.err.println("WE ARE FACING TECHNICAL DIFFUCULTIES. PLEASE TRY AGAIN LATER.");
+			System.err.println("YOUR INPUT IS NOT WELL FORMATTED. PLEASE CHECK INSTRUCTIONS.");
 			System.exit(1);
 		}
 
